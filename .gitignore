@@ -1,0 +1,42 @@
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.env
+forma-fit-firebase-adminsdk-fbsvc-f17c47b000.json
+.venv
+
+# Environment variables
+.env
+.env.local
+
+# API keys and secrets
+*.pem
+*.key
+<<<<<<< HEAD
+<<<<<<< HEAD
+<<<<<<< HEAD
+secrets.json
+=======
+=======
+>>>>>>> 519e37f71fdf8f26ca9db4a7ee5bf56bf4ae1c08
+=======
+>>>>>>> 519e37f71fdf8f26ca9db4a7ee5bf56bf4ae1c08
+secrets.json
+
+# Milvus database files
+*.db
+*.db.lock
+milvus_demo.db
+backend/chatbot/milvus_demo.db
+<<<<<<< HEAD
+<<<<<<< HEAD
+backend/milvus_demo.db
+>>>>>>> refs/remotes/origin/dev
+=======
+backend/milvus_demo.db
+>>>>>>> 519e37f71fdf8f26ca9db4a7ee5bf56bf4ae1c08
+=======
+backend/milvus_demo.db
+>>>>>>> 519e37f71fdf8f26ca9db4a7ee5bf56bf4ae1c08
