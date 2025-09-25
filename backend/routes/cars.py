@@ -8,14 +8,14 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 
 from supabase_client import supabase
 from fastapi import APIRouter
-from services.car_service import fetch_all_cars
+from services.car_service import fetch_all_cars, fetch_car
 
 # router basically groups similar endpoints together
 # here we group all auth-related endpoints together. 
 # we can then group the endpoints of cars/booking actions together
 router = APIRouter(prefix="/cars")
 
-@router.get("/cars")
+@router.get("/get_all_cars")
 def get_all_cars():
     try: 
         # get cars from the database to list it on dashboard
@@ -27,4 +27,14 @@ def get_all_cars():
         return cars_list
     except Exception as e:
         print(f"Error fetching cars: {e}")
+        return {"error": f"An error occurred while fetching cars {e}"}
+    
+@router.get("/get_car")
+def get_car(car_id):
+    try:
+        # get one car from database by id
+        car = fetch_car(car_id)
+        return car
+    except Exception as e:
+        print(f"Error fetching cars {e}")
         return {"error": f"An error occurred while fetching cars {e}"}

@@ -1,3 +1,5 @@
+# Author: Daniel Canhedo
+
 from backend.supabase_client import supabase
 from fastapi import APIRouter
 
@@ -38,5 +40,3 @@ def forgot_password(email):
     except Exception as e:
         print(f"Error in forgot password: {e}")
         return None
-    
-# sign_up("daniwave100@gmail.com", "hey12345")

@@ -1,5 +1,7 @@
+# Authors: Daniel Canhedo
+
 class Car:
-    def __init__(self, id: int, make: str, model: str, year: int, category: str, status: bool = True, rate: float = 0.0, mileage: float = 0.0):
+    def __init__(self, id: int, make: str, model: str, year: int, category: str, status: bool, rate: float, mileage: float, image_url: str):
         self.id = id
         self.make = make
         self.model = model
@@ -8,6 +10,7 @@ class Car:
         self.status = status
         self.rate = rate
         self.mileage = mileage
+        self.image_url = image_url
 
     def to_dict(self):
         return {
@@ -18,5 +21,6 @@ class Car:
             "category": self.category,
             "status": self.status,
             "rate": self.rate,
-            "mileage": self.mileage
+            "mileage": self.mileage,
+            "image url": self.image_url
         }
