@@ -1,0 +1,46 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Car Rental Dashboard</title>
+    <link rel="stylesheet" href="./styles.css" />
+  </head>
+  <body>
+    <!-- Root -->
+    <div id="app">
+      <!-- Login View -->
+      <section id="view-login">
+        <div class="center">
+          <h1>Sign In</h1>
+          <p>(placeholder form — wiring later)</p>
+          <button id="fake-login">Fake Sign In (dev)</button>
+        </div>
+      </section>
+
+      <!-- Dashboard View -->
+      <section id="view-dashboard" class="hidden">
+        <header id="topbar">
+          <div class="brand">CarRent</div>
+          <nav class="user-menu">
+            <button id="btn-signout">Sign out</button>
+          </nav>
+        </header>
+
+        <div id="tabs" class="tabs">
+          <button class="tab is-active" data-tab="all">All Cars</button>
+          <button class="tab" data-tab="available">Available</button>
+          <button class="tab" data-tab="in_use">In Use</button>
+        </div>
+
+        <main id="content" class="content">
+          <!-- rendered by JS -->
+        </main>
+
+        <div id="modal-root" class="modal-root hidden"></div>
+      </section>
+    </div>
+
+    <script defer src="./app.js"></script>
+  </body>
+</html>
