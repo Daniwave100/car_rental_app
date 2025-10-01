@@ -15,6 +15,7 @@ from services.car_service import fetch_all_cars, fetch_car
 # we can then group the endpoints of cars/booking actions together
 router = APIRouter(prefix="/cars")
 
+# dont use verbs
 @router.get("/get_all_cars")
 def get_all_cars():
     try: 
@@ -29,6 +30,7 @@ def get_all_cars():
         print(f"Error fetching cars: {e}")
         return {"error": f"An error occurred while fetching cars {e}"}
     
+# dont use verbs for naming api
 @router.get("/get_car")
 def get_car(car_id):
     try:
