@@ -1,6 +1,6 @@
 const loginForm = document.getElementById('login-form')
 const loginMsg = document.getElementById('login-msg');
-// comment
+// comment 2
 if (loginForm) {
     loginForm.addEventListener('submit', (e) => {
         e.preventDefault();
