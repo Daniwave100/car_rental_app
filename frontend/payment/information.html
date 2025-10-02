@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8" />
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+
+  <title>Checkout - Payment Page</title>
+
+  <style>
+
+    * {
+
+      margin: 0;
+
+      padding: 0;
+
+      box-sizing: border-box;
+
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+
+    }
+
+ 
+
+    body {
+
+      background-color: #f9fafb;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      min-height: 100vh;
+
+    }
+
+ 
+
+    .checkout-container {
+
+      background: #fff;
+
+      padding: 2rem;
+
+      border-radius: 12px;
+
+      width: 100%;
+
+      max-width: 450px;
+
+      box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+
+      animation: fadeIn 0.5s ease;
+
+    }
+
+ 
+
+    h1 {
+
+      text-align: center;
+
+      font-size: 1.6rem;
+
+      margin-bottom: 1rem;
+
+      color: #111827;
+
+    }
+
+ 
+
+    .total-amount {
+
+      text-align: center;
+
+      font-size: 1.3rem;
+
+      font-weight: 600;
+
+      margin-bottom: 1.5rem;
+
+      color: #2563eb;
+
+    }
+
+ 
+
+    .payment-methods {
+
+      display: flex;
+
+      flex-direction: column;
+
+      gap: 0.75rem;
+
+      margin-bottom: 1.5rem;
+
+    }
+
+ 
+
+    .payment-btn {
+
+      display: flex;
+
+      align-items: center;
+
+      justify-content: center;
+
+      gap: 0.5rem;
+
+      padding: 0.6rem;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      background-color: #fff;
+
+      transition: background-color 0.2s ease;
+
+      text-decoration: none;
+
+      color: #111827;
+
+    }
+
+ 
+
+    .payment-btn:hover {
+
+      background-color: #f3f4f6;
+
+    }
+
+ 
+
+    .payment-btn img {
+
+      height: 20px;
+
+    }
+
+ 
+
+    .divider {
+
+      display: flex;
+
+      align-items: center;
+
+      margin: 1rem 0;
+
+      color: #9ca3af;
+
+      font-size: 0.9rem;
+
+    }
+
+ 
+
+    .divider::before,
+
+    .divider::after {
+
+      content: "";
+
+      flex: 1;
+
+      height: 1px;
+
+      background: #e5e7eb;
+
+      margin: 0 0.5rem;
+
+    }
+
+ 
+
+    form .form-group {
+
+      margin-bottom: 1rem;
+
+    }
+
+ 
+
+    .form-group label {
+
+      display: block;
+
+      margin-bottom: 0.3rem;
+
+      font-weight: 600;
+
+      font-size: 0.9rem;
+
+      color: #374151;
+
+    }
+
+ 
+
+    .form-group input {
+
+      width: 100%;
+
+      padding: 0.5rem;
+
+      border: 1px solid #d1d5db;
+
+      border-radius: 6px;
+
+      font-size: 1rem;
+
+      transition: border-color 0.2s;
+
+    }
+
+ 
+
+    .form-group input:focus {
+
+      outline: none;
+
+      border-color: #2563eb;
+
+      box-shadow: 0 0 0 2px rgba(37, 99, 235, 0.2);
+
+    }
+
+ 
+
+    .form-row {
+
+      display: flex;
+
+      gap: 0.75rem;
+
+    }
+
+ 
+
+    .form-row .form-group {
+
+      flex: 1;
+
+    }
+
+ 
+
+    .pay-btn {
+
+      display: block;
+
+      width: 100%;
+
+      background-color: #2563eb;
+
+      color: #fff;
+
+      padding: 0.75rem;
+
+      font-size: 1rem;
+
+      font-weight: 600;
+
+      border: none;
+
+      border-radius: 8px;
+
+      cursor: pointer;
+
+      transition: background-color 0.2s ease;
+
+      margin-top: 0.5rem;
+
+    }
+
+ 
+
+    .pay-btn:hover {
+
+      background-color: #1e40af;
+
+    }
+
+ 
+
+    @keyframes fadeIn {
+
+      from { opacity: 0; transform: translateY(10px); }
+
+      to { opacity: 1; transform: translateY(0); }
+
+    }
+
+  </style>
+
+</head>
+
+<body>
+
+ 
+
+  <div class="checkout-container">
+
+    <h1>Checkout</h1>
+
+    <div class="total-amount">$49.99</div>
+
+ 
+
+    <!-- Payment Methods -->
+
+    <div class="payment-methods">
+
+      <a href="success.html" class="payment-btn">
+
+        <img src=https://upload.wikimedia.org/wikipedia/commons/5/5f/Google_Pay_Logo.svg alt="Google Pay">
+
+        <span>Pay with Google Pay</span>
+
+      </a>
+
+ 
+
+      <a href="success.html" class="payment-btn">
+
+        <img src=https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg alt="Apple Pay" style="height:22px;">
+
+        <span>Pay with Apple Pay</span>
+
+      </a>
+
+    </div>
+
+ 
+
+    <div class="divider">or pay with card</div>
+
+ 
+
+    <!-- Card Form -->
+
+    <form action="success.html" method="get">
+
+      <div class="form-group">
+
+        <label for="fullname">Full Name</label>
+
+        <input type="text" id="fullname" placeholder="John Doe" required>
+
+      </div>
+
+ 
+
+      <div class="form-group">
+
+        <label for="address">Billing Address</label>
+
+        <input type="text" id="address" placeholder="123 Main Street" required>
+
+      </div>
+
+ 
+
+      <div class="form-group">
+
+        <label for="city">City</label>
+
+        <input type="text" id="city" placeholder="New York" required>
+
+      </div>
+
+ 
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label for="state">State</label>
+
+          <input type="text" id="state" placeholder="NY" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="zip">ZIP Code</label>
+
+          <input type="text" id="zip" placeholder="10001" required>
+
+        </div>
+
+      </div>
+
+ 
+
+      <div class="form-group">
+
+        <label for="card-number">Card Number</label>
+
+        <input type="text" id="card-number" placeholder="1234 5678 9012 3456" required>
+
+      </div>
+
+ 
+
+      <div class="form-row">
+
+        <div class="form-group">
+
+          <label for="expiry">Expiry Date</label>
+
+          <input type="text" id="expiry" placeholder="MM/YY" required>
+
+        </div>
+
+        <div class="form-group">
+
+          <label for="cvv">CVV</label>
+
+          <input type="password" id="cvv" placeholder="***" required>
+
+        </div>
+
+      </div>
+
+ 
+
+      <button type="submit" class="pay-btn">Pay $49.99</button>
+
+    </form>
+
+  </div>
+
+ 
+
+</body>
+
+</html>
