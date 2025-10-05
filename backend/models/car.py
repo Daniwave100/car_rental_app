@@ -22,5 +22,5 @@ class Car:
             "status": self.status,
             "rate": self.rate,
             "mileage": self.mileage,
-            "image url": self.image_url
+            "image_url": self.image_url
         }

@@ -60,8 +60,8 @@ if (loginForm) {
         const password = document.getElementById("login-password").value;
 
         if (!email || !password) {
-            signupMsg.textContent = "Please fill in all field values.";
-            signupMsg.classList.add("error");
+            loginMsg.textContent = "Please fill in all field values.";
+            loginMsg.classList.add("error");
             return;
         }
 
@@ -79,13 +79,13 @@ if (loginForm) {
             const data = await response.json();
             console.log("Log in response:", data);
 
-            signupMsg.textContent = "Log in successful!";
-            signupMsg.classList.add("ok");
+            // Redirect to dashboard on success
+            window.location.href = "../dashboard/index.html";
         } catch (error) {
             console.error("Error during log in:", error);
-            signupMsg.textContent = "Log in failed. Try again.";
-            signupMsg.classList.remove("ok");
-            signupMsg.classList.add("error");
+            loginMsg.textContent = "Log in failed. Try again.";
+            loginMsg.classList.remove("ok");
+            loginMsg.classList.add("error");
         }
     });
 }

@@ -31,12 +31,12 @@ def get_all_cars():
         return {"error": f"An error occurred while fetching cars {e}"}
     
 # dont use verbs for naming api
-@router.get("/get_car")
-def get_car(car_id):
+@router.get("/get_car/{car_id}")
+def get_car(car_id: str):
     try:
         # get one car from database by id
         car = fetch_car(car_id)
-        return car
+        return car.to_dict()
     except Exception as e:
         print(f"Error fetching cars {e}")
         return {"error": f"An error occurred while fetching cars {e}"}

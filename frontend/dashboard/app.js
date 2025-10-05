@@ -8,38 +8,30 @@ const state = {
 // ---- Boot
 document.addEventListener("DOMContentLoaded", init);
 
-function init() {
-  // start on login view until real auth is wired
-  showView("login");
-  wireLoginDevButton();
+async function init() {
+  // assume user is logged in from login.html
+  state.auth = { email: "user@example.com" }; // placeholder
+  showView("dashboard");
   wireTopbar();
   wireTabs();
-  renderCars(); // renders empty state
+  await loadCars();
+  renderCars();
 }
 
 // ---- View switching
 function showView(viewName) {
-  const login = document.getElementById("view-login");
-  const dash  = document.getElementById("view-dashboard");
-  if (viewName === "login") {
-    login.classList.remove("hidden");
-    dash.classList.add("hidden");
-  } else {
-    login.classList.add("hidden");
-    dash.classList.remove("hidden");
-  }
+  // only dashboard view now
 }
 
-// Dev helper: pretend login (so you can see dashboard now)
-function wireLoginDevButton() {
-  const btn = document.getElementById("fake-login");
-  if (!btn) return;
-  btn.addEventListener("click", () => {
-    state.auth = { email: "dev@example.com" }; // fake session
-    showView("dashboard");
-    setActiveTab("all");
-    renderCars();
-  });
+// ---- Load cars from API
+async function loadCars() {
+  try {
+    const response = await fetch("http://127.0.0.1:8000/cars/get_all_cars");
+    state.cars = await response.json();
+  } catch (error) {
+    console.error("Error loading cars:", error);
+    state.cars = [];
+  }
 }
 
 // ---- Topbar
@@ -49,7 +41,7 @@ function wireTopbar() {
   signout.addEventListener("click", () => {
     console.log("Sign out clicked");
     state.auth = null;
-    showView("login");
+    window.location.href = "../login_page/login.html";
   });
 }
 
@@ -78,16 +70,42 @@ function setActiveTab(tabKey) {
   });
 }
 
-// ---- Content rendering (no API yet)
+// ---- Content rendering
 function renderCars() {
   const el = document.getElementById("content");
   const label = tabLabel(state.activeTab);
 
-  // later we'll filter state.cars by activeTab; for now, empty state
+  // filter cars by activeTab
+  let filteredCars = state.cars;
+  if (state.activeTab === "available") {
+    filteredCars = state.cars.filter(car => car.status);
+  } else if (state.activeTab === "in_use") {
+    filteredCars = state.cars.filter(car => !car.status);
+  }
+
+  if (filteredCars.length === 0) {
+    el.innerHTML = `
+      <div class="empty-state">
+        <strong>${label}</strong><br/>
+        No cars to show.
+      </div>
+    `;
+    return;
+  }
+
   el.innerHTML = `
-    <div class="empty-state">
-      <strong>${label}</strong><br/>
-      No cars to show yet. We’ll connect to the API next.
+    <div class="cars-grid">
+      ${filteredCars.map(car => `
+        <div class="car-card">
+          <img src="${car.image_url}" alt="${car.make} ${car.model}" class="car-image">
+          <h3>${car.make} ${car.model} (${car.year})</h3>
+          <p>Category: ${car.category}</p>
+          <p>Rate: $${car.rate}/day</p>
+          <p>Mileage: ${car.mileage}</p>
+          <p>Status: ${car.status ? 'Available' : 'In Use'}</p>
+          ${car.status ? `<button onclick="selectCar('${car.id}')">Rent This Car</button>` : ''}
+        </div>
+      `).join('')}
     </div>
   `;
 }
@@ -96,4 +114,9 @@ function tabLabel(key) {
   return key === "available" ? "Available Cars"
        : key === "in_use"    ? "Cars In Use"
        : "All Cars";
+}
+
+// ---- Select car for rental
+function selectCar(carId) {
+  window.location.href = `../payment/information.html?car_id=${carId}`;
 }
